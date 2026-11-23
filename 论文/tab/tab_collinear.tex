@@ -1,0 +1,36 @@
+{\small
+\begin{longtable}{>{\centering\arraybackslash}p{0.340\textwidth}>{\centering\arraybackslash}p{0.200\textwidth}>{\centering\arraybackslash}p{0.400\textwidth}}
+  \caption{样本结构与共线判别指标}
+  \label{tab:collinear} \\
+  \toprule
+  指标 & 数值 & 说明 \\
+  \midrule
+  \endfirsthead
+  \caption{样本结构与共线判别指标（续）} \\
+  \toprule
+  指标 & 数值 & 说明 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  样本量 & 500.0 & 500 条帖子 \\
+  变量数 & 8 & 7 个输入 + 1 个输出 \\
+  完全重复行 & 0 & 按 8 个原始变量判定 \\
+  X7 缺失数 & 1 & 仅第 499 行缺失，占 0.2\% \\
+  Y1 偏度（原始） & 8.3259 & 右偏严重，需 log1p \\
+  Y1 峰度（原始） & 93.0526 & 超额峰度 \\
+  Y1 最大值/中位数 & 122.7 & 极端重尾 \\
+  log1p(Y1) 偏度 & 0.7341 & 变换后接近对称 \\
+  log1p(Y1) 峰度 & 0.8209 & 变换后峰度显著下降 \\
+  log(X1) 偏度 & -1.1541 & 左偏（粉丝数持续增长） \\
+  Pearson r(X1, X4) & 0.9412 & 粉丝规模与月份的线性相关 \\
+  Spearman ρ(X1, X4) & 0.9960 & 单调相关接近 1 \\
+  R²(logX1 ~ 月份哑变量) & 0.9917 & 99.2\% 的粉丝规模变异在月间 \\
+  log(X1) 总标准差 & 0.1435 & 跨全部帖子 \\
+  log(X1) 月内标准差 & 0.0130 & 仅 1.3\%，月内几乎不变 \\
+  月内方差占比 & 0.0083 & 1 - R² \\
+  X1 唯一值数 & 90 & 90 个不同取值，重复多 \\
+  月内 X1 唯一值中位数 & 6.5 & 每月仅约 6–7 个不同粉丝数 \\
+  X1 最大值/最小值 & 1.7137 & 量级跨度有限 \\
+\end{longtable}
+}

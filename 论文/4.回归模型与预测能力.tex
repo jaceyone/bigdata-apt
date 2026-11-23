@@ -1,0 +1,99 @@
+% ════════════════════════════════════════════
+% 4. 回归模型与预测能力
+% ════════════════════════════════════════════
+\section{回归模型与预测能力（对应 2.3）}
+
+\subsection{模型设定与候选比较（对应 2.3.1）}
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\noindent\rule{\textwidth}{0.9pt}\par\nobreak\vspace{2pt}
+\refstepcounter{algocnt}\noindent\textbf{算法 \thealgocnt\quad 曝光回归的建模、选择与效应测算流程}\label{alg:pipeline}\par\nobreak\vspace{2pt}
+\noindent\rule{\textwidth}{0.4pt}\par\nobreak\vspace{4pt}
+{\small
+\noindent\textbf{输入：}清洗数据 $\mathcal{D}$（$n=500$、$p=8$）；候选设定 $\mathcal{M}=\{M_0,\dots,M_4\}$；折数 $K=10$；模拟次数 $B=1000$。\par\vspace{2pt}
+\noindent\textbf{输出：}$M^{*}$；系数与 95\% 置信区间；付费与类型效应；组内联合检验 $p$。\par\vspace{4pt}
+\noindent{\color{gray}// 阶段 1：编码与共线判别}\par
+\hangindent=1.6em\hangafter=1 \hspace*{1.2em}1\ \ $X\leftarrow$ 独热编码 $(X_2,X_3,X_4,X_5,\text{时段})$，$y\leftarrow\log(1+Y_1)$；若 $\max\mathrm{VIF}>10$ 且 $|\rho(\log X_1,X_4)|\ge0.9$ 且月内方差占比 $<5\%$，则从 $\mathcal{M}$ 删去 $\log X_1$ 与月份并列的设定。\par\vspace{3pt}
+\noindent{\color{gray}// 阶段 2：主循环（复杂度 $O(Knp^2)$）}\par
+\hangindent=1.6em\hangafter=1 \hspace*{1.2em}2\ \ \textbf{for each} $M_j\in\mathcal{M}$ \textbf{do} $(\hat\beta_j,\widehat{\mathrm{Cov}}_j)\leftarrow\mathrm{fitHC3}(y,X_{M_j})$；$(R^2_j,\mathrm{CV}R^2_j)\leftarrow\mathrm{kfoldCV}(y,X_{M_j},K)$。\par\vspace{3pt}
+\noindent{\color{gray}// 阶段 3：终止条件——交叉验证最优且参数最少}\par
+\hangindent=1.6em\hangafter=1 \hspace*{1.2em}3\ \ $M^{*}\leftarrow\arg\max_{j}\mathrm{CV}R^2_j$，并列时取参数个数最小者。\par\vspace{3pt}
+\noindent{\color{gray}// 阶段 4：诊断与效应测算}\par
+\hangindent=1.6em\hangafter=1 \hspace*{1.2em}4\ \ 执行 BP / JB / Cook 检验，异方差时沿用 HC3；$s\leftarrow\mathrm{duanSmearing}(\hat\beta^{*})$；$(\hat\tau,\text{CI})\leftarrow\mathrm{simulateCI}(\hat\beta^{*},\widehat{\mathrm{Cov}}^{*},B,s)$；对类型、主题、时段子样本重估 $M^{*}$，得组内联合 Wald $p$。\par\vspace{3pt}
+\hangindent=1.6em\hangafter=1 \hspace*{1.2em}5\ \ \textbf{return} $M^{*},\hat\beta^{*},\hat\tau,\text{CI}$。\par}
+\vspace{2pt}\noindent\rule{\textwidth}{0.9pt}\par\vspace{6pt}
+\end{minipage}
+\end{center}
+
+因变量取 $\log(1+Y_1)$，解释变量为发帖决策变量与时间控制项，估计方法为普通最小二乘、推断采用 HC3 稳健标准误。设定从“全模型”出发逐步剔除不可识别或冗余的项，形成五个候选：M0 为均值基线，M1 为含粉丝规模与月份的全模型，M2 去掉粉丝规模、保留月份固定效应，M3 只留粉丝规模，M4 用线性月份替代月份哑变量。五个候选的拟合与十折交叉验证结果见表\ref{tab:cv}：M2 的交叉验证 $R^2$ 最高（0.101）、CV RMSE 最低（1.101），样本内 $R^2=0.207$、调整 $R^2=0.165$；M1 多一个参数而交叉验证表现反而略差，说明粉丝规模提供的是与月份重复的信息。M0 的交叉验证 $R^2$ 为 $-0.021$，均值基线不具备预测能力。
+
+\input{tab/tab_cv.tex}
+
+
+建模、选择与效应测算的整体流程见算法\ref{alg:pipeline}。算法的关键设计是把“共线判别”放在模型拟合之前，避免先拟合再删变量的循环论证；终止条件不是样本内拟合最好，而是交叉验证 $R^2$ 最大且参数个数最少。
+
+
+
+\subsection{估计结果（对应 2.3.1）}
+
+最终模型 M2 的系数见表\ref{tab:coef}，该模型 $R^2=0.207$、调整 $R^2=0.165$，整体 $F=4.94$（$p<0.001$），即 26 个参数联合显著。控制月份、星期、时段后，付费帖子的 $\log(1+Y_1)$ 比自然帖子高 0.337（HC3 标准误 0.120，$p=0.005$）；类型维度上，Status 与 Video 分别比 Photo 高 1.154 与 1.590，Link 与 Photo 无显著差异（$p=0.643$）；主题 2 与主题 3 分别比主题 1 低 0.478 与 0.315，前者 $p<0.001$、后者 $p=0.019$；凌晨与下午晚间相对上午不显著（$p=0.150$、$p=0.638$），星期各水平同样不显著。模型常数项 9.247 对应基准组合（Photo、主题 1、1 月、周一、上午、自然帖）的期望对数曝光。图\ref{fig:forest}把主效应点估计与 95\% 置信区间并排呈现，显著为正、显著为负与不显著三档分别用深蓝、红与灰区分。
+
+\needspace{30\baselineskip}
+\input{tab/tab_coef.tex}
+
+\needspace{30\baselineskip}
+\input{tab/tab_coef_m1.tex}
+
+表\ref{tab:coef_m1}给出全模型 M1 的完整系数表（27 个参数）。它是题面要求的“真实系数表”的原始估计：$\log X_1$ 的系数 0.836（HC3 标准误 3.819、$p=0.827$）几乎没有信息量，常数项标准误达 43.36，根源是 $\log X_1$ 与月份哑变量并列后 VIF 达到 124.9；这正是第 3.3 节判定不可识别、并最终以 M2 作为解释模型的直接证据。两表对照可以看出：剔除 $\log X_1$ 后，付费、类型与主题的系数变动都在 0.01 以内，说明主效应并未因共线处理而改变。
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.76\textwidth]{../求解/问题三/结果/图6_最终模型系数森林图.png}
+  \caption{最终模型的主效应系数与 95\% 置信区间}
+  \label{fig:forest}
+\end{figure}
+
+\subsection{残差诊断与共线处理效果（对应 2.3.2-A、B）}
+
+残差检验见表\ref{tab:resid}。最终模型 M2 的 Jarque--Bera 统计量 120.36、$p<0.001$，残差呈尖峰厚尾；Breusch--Pagan 统计量 54.74、$p=0.0005$，存在随拟合值增大的异方差；White 检验同样拒绝同方差（$p=0.030$），Ramsey RESET 未拒绝“线性形式正确”（$p=0.059$，处在临界）。这三项结果共同决定了推断口径：系数显著性使用 HC3 稳健标准误，系数解释限定在样本内的局部平均效应。图\ref{fig:resid}给出四联诊断：残差对拟合值呈水平带状但离散度随拟合值扩大；标准化残差的 Q--Q 图两端偏离 45° 线；尺度—位置图显示绝对残差随拟合值上升；Cook 距离有 30 个观测超过 $4/n$ 阈值，最大的三条分别为第 416、141、461 号帖子，其影响力均在可接受范围内。
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.58\textwidth]{../求解/问题三/结果/图8_残差诊断.png}
+  \caption{最终模型的残差诊断：拟合、Q--Q、尺度—位置与 Cook 距离}
+  \label{fig:resid}
+\end{figure}
+
+\input{tab/tab_resid.tex}
+
+
+
+共线处理的直接效果见图\ref{fig:vif}。全模型 M1 中 $\log X_1$ 的方差膨胀因子为 124.9、月份哑变量组最大值为 143.0，远超 10 的严重共线阈值；剔除粉丝规模后，M2 的最大方差膨胀因子降至 3.23，全部解释变量落入可接受区间（$<5$）。哑铃图把每个变量的前后变化连在一起，除粉丝规模已不进入模型外，其余变量的方差膨胀因子几乎不变，说明共线只发生在粉丝规模与月份之间，与其他变量无关。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.58\textwidth]{../求解/问题三/结果/图7_共线性诊断.png}
+  \caption{共线处理前后各方差膨胀因子的变化}
+  \label{fig:vif}
+\end{figure}
+
+\subsection{预测能力（对应 2.3.2-D）}
+
+图\ref{fig:cv}把五个候选的样本内 $R^2$ 与十折交叉验证 $R^2$ 用坡度图对照。所有模型都出现右倾——交叉验证表现低于样本内，这是参数估计用到全部样本的必然结果，但倾斜幅度不同：M1 从 0.207 降至 0.097，M2 从 0.207 降至 0.101，两者几乎重合；M3 与 M4 分别从 0.161 与 0.166 降至 0.094 与 0.097；M0 从 0 降至 $-0.021$。M2 的交叉验证 $R^2$ 最高、RMSE 最低，且比 M1 少一个参数，因此作为最终模型。样本外 $R^2$ 只有 0.10，说明模型适合判断变量方向与相对幅度，不适合逐条预测单帖曝光。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.76\textwidth]{../求解/问题三/结果/图9_预测能力验证.png}
+  \caption{五个候选模型的样本内与交叉验证 $R^2$}
+  \label{fig:cv}
+\end{figure}
+
+\subsection{方差贡献分解}
+
+把七个变量组按 128 个子集做 Shapley 分解，结果见表\ref{tab:shap}：发帖类型贡献 0.0767（占可解释方差 37.1\%）、月份 0.0579（28.0\%）、付费 0.0244（11.8\%）、星期 0.0236（11.4\%）、内容主题 0.0142（6.9\%）、时段 0.0055（2.6\%）、粉丝规模 0.0046（2.2\%）。七个变量组合计解释 20.7\% 的曝光方差，剩余 79.3\% 属于个体差异与未观测因素。这一分解给出与回归系数一致的排序：发帖类型与月份是曝光差异的主要来源，付费与星期次之，粉丝规模在控制月份后几乎没有增量贡献。
+
+\needspace{16\baselineskip}
+\input{tab/tab_shap.tex}
+

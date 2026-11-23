@@ -1,0 +1,38 @@
+% ════════════════════════════════════════════
+% 符号说明（04.符号说明.tex）
+% ════════════════════════════════════════════
+\section{符号说明}
+
+本文使用的主要符号及其含义如表\ref{tab:符号说明}所示。
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.16\textwidth}>{\centering\arraybackslash}p{0.80\textwidth}}
+  \caption{符号说明}
+  \label{tab:符号说明} \\
+  \toprule
+  符号 & 说明 \\
+  \midrule
+  \endfirsthead
+  \caption{符号说明（续）} \\
+  \toprule
+  符号 & 说明 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  $Y_i$ & 第 $i$ 条帖子的曝光总次数（次） \\
+  $y_i$ & 变换后的因变量，$y_i=\log(1+Y_i)$ \\
+  $X_{1i}$ & 粉丝规模，即主页粉丝数（人） \\
+  $X_{2i}$ & 帖子类型（Photo、Status、Link、Video） \\
+  $X_{3i}$ & 内容主题类别（1、2、3） \\
+  $X_{4i},X_{5i},X_{6i}$ & 发帖月份、星期与时段组 \\
+  $X_{7i}$ & 付费推广标记，付费取 1，自然取 0 \\
+  $\boldsymbol{\beta}$ & 回归系数向量 \\
+  $\varepsilon_i$ & 随机扰动项 \\
+  $\boldsymbol{V}_{\mathrm{HC3}}$ & HC3 异方差稳健协方差矩阵 \\
+  $\eta_i$ & 对数尺度的线性预测值 \\
+  $\lambda$ & Duan 烟雾还原因子 \\
+  $\tau$ & 处理效应（付费或类型差异） \\
+  $R^2$ & 决定系数 \\
+  $D_i$ & 第 $i$ 个观测的 Cook 距离 \\
+  $\phi(S)$ & 变量子集 $S$ 的 Shapley 特征函数
+\end{longtable}

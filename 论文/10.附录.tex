@@ -1,0 +1,22 @@
+% ════════════════════════════════════════════
+% 10. 附录
+% ════════════════════════════════════════════
+\appendix
+\section{源码索引与核心代码}
+
+全部计算在 Python 3.14 下完成，依赖 NumPy、pandas、statsmodels、SciPy 与 Matplotlib。源码按环节分目录存放（`求解/问题一`至`问题四`的`代码`目录），每一个数值结论都能追溯到对应脚本与输出表。
+
+最终模型的估计与诊断代码见下，其余脚本结构相同，只在变量集合与检验项上不同。
+
+\begin{verbatim}
+d = pd.read_csv("清洗数据.csv", encoding="utf-8-sig").dropna(subset=["X7"])
+X = pd.get_dummies(d[["X2c","X3c","month_c","weekday_c","hour_band"]],
+                   drop_first=True, dtype=float)
+X["付费"] = d["X7"].astype(int); X = sm.add_constant(X); y = d["logY"]
+
+m2 = sm.OLS(y, X).fit(cov_type="HC3")          # M2：OLS + HC3
+bp = het_breuschpagan(m2.resid, m2.model.exog)  # 异方差 p = 0.0005
+jb = stats.jarque_bera(m2.resid)                # 正态性 p < 0.001
+for i, col in enumerate(X.columns):             # 逐列方差膨胀因子
+    print(col, round(variance_inflation_factor(X.values, i), 2))
+\end{verbatim}

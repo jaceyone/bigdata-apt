@@ -1,0 +1,23 @@
+{\small
+\begin{longtable}{>{\centering\arraybackslash}p{0.200\textwidth}>{\centering\arraybackslash}p{0.120\textwidth}>{\centering\arraybackslash}p{0.090\textwidth}>{\centering\arraybackslash}p{0.090\textwidth}>{\centering\arraybackslash}p{0.140\textwidth}>{\centering\arraybackslash}p{0.090\textwidth}>{\centering\arraybackslash}p{0.090\textwidth}>{\centering\arraybackslash}p{0.120\textwidth}}
+  \caption{六种模型设定下的效应稳健性}
+  \label{tab:robust} \\
+  \toprule
+  设定 & 付费提升（\%） & 提升下限 & 提升上限 & Video 倍数 & 倍数下限 & 倍数上限 & $X_3$ 联合 $p$ \\
+  \midrule
+  \endfirsthead
+  \caption{六种模型设定下的效应稳健性（续）} \\
+  \toprule
+  设定 & 付费提升（\%） & 提升下限 & 提升上限 & Video 倍数 & 倍数下限 & 倍数上限 & $X_3$ 联合 $p$ \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  M1 全模型 & 40.0891 & 10.7199 & 77.2487 & 4.8944 & 2.2284 & 10.7499 & 0.0019 \\
+  M2 月份固定效应 & 40.1325 & 10.8626 & 77.1301 & 4.9017 & 2.2307 & 10.7708 & 0.0018 \\
+  M3 仅logX1 & 49.6482 & 18.5385 & 88.9225 & 5.2503 & 2.5022 & 11.0164 & 0.0052 \\
+  M4 logX1+线性月份 & 47.137 & 15.8511 & 86.8717 & 5.4076 & 2.6179 & 11.17 & 0.0030 \\
+  Huber 稳健回归 & 37.4423 & 13.2266 & 66.837 & 5.3838 & 2.5841 & 11.2168 & 0.0045 \\
+  Gamma GLM（log 链接） & 44.8408 & 9.4426 & 91.6882 & 3.518 & 1.7216 & 7.1886 & 0.0001 \\
+\end{longtable}
+}

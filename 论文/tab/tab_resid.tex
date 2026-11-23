@@ -1,0 +1,31 @@
+{\small
+\begin{longtable}{>{\centering\arraybackslash}p{0.160\textwidth}>{\centering\arraybackslash}p{0.300\textwidth}>{\centering\arraybackslash}p{0.160\textwidth}>{\centering\arraybackslash}p{0.140\textwidth}>{\centering\arraybackslash}p{0.220\textwidth}}
+  \caption{残差诊断检验结果}
+  \label{tab:resid} \\
+  \toprule
+  模型 & 检验 & 统计量 & p值 & 判断 \\
+  \midrule
+  \endfirsthead
+  \caption{残差诊断检验结果（续）} \\
+  \toprule
+  模型 & 检验 & 统计量 & p值 & 判断 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  M1 全模型 & Jarque–Bera 正态性 & 119.0 & 0 & 残差非正态 \\
+  M1 全模型 & Breusch–Pagan 异方差 & 56.5179 & 0.0005 & 存在异方差 \\
+  M1 全模型 & White 异方差 & 283.3 & 0.0789 & 未检出/不可判定 \\
+  M1 全模型 & Ramsey RESET（3 阶） & 2.867 & 0.0579 & 未检出设定误差 \\
+  M1 全模型 & Durbin–Watson & 2.0513 & — & 接近 2，无强自相关（截面数据仅作参考） \\
+  M1 全模型 & Cook 距离最大值 & 0.0492 & — & 无 Cook>1 的强影响点 \\
+  M1 全模型 & 高杠杆点个数（h>2p/n） & 10 & — & 阈值 h>0.108 \\
+  M2 最终模型 & Jarque–Bera 正态性 & 120.4 & 0 & 残差非正态 \\
+  M2 最终模型 & Breusch–Pagan 异方差 & 54.7371 & 0.0005 & 存在异方差 \\
+  M2 最终模型 & White 异方差 & 266.5 & 0.0301 & 存在异方差 \\
+  M2 最终模型 & Ramsey RESET（3 阶） & 2.8451 & 0.0591 & 未检出设定误差 \\
+  M2 最终模型 & Durbin–Watson & 2.0523 & — & 接近 2，无强自相关（截面数据仅作参考） \\
+  M2 最终模型 & Cook 距离最大值 & 0.0377 & — & 无 Cook>1 的强影响点 \\
+  M2 最终模型 & 高杠杆点个数（h>2p/n） & 10 & — & 阈值 h>0.104 \\
+\end{longtable}
+}

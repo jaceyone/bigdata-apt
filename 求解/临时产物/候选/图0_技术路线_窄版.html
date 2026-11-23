@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>图0 技术路线</title><style>
+ html,body{margin:0;padding:0;background:#fff}
+ #cv{position:relative;width:1180px;height:951px;background:#fff;overflow:hidden;
+     font-family:"Times New Roman","SimSun",serif;color:#26282D;-webkit-font-smoothing:antialiased}
+ .b{position:absolute;box-sizing:border-box;display:flex;align-items:center;
+     justify-content:center;text-align:center;background:#fff;
+     border:1.07px solid #9FA9B4;border-radius:0;
+     font-size:20.2125px;line-height:1.32;padding:0 6px;z-index:2}
+ .b span{display:block;white-space:nowrap}
+ .b.lt{background:#fff;border-color:#9FA9B4;
+     border-left:1.5px solid #3C5488}
+ .b.sm{font-size:17.481px}
+ .hd{position:absolute;transform:translateX(-50%);box-sizing:border-box;
+     white-space:nowrap;background:transparent;color:#3C5488;
+     border-bottom:1.07px solid #3C5488;border-radius:0;
+     font-size:22.9439px;z-index:2}
+ .hd span{display:block;white-space:nowrap}
+ .g{position:absolute;border:1.07px dashed #C9D2DC;
+     border-radius:0;z-index:1}
+ .sg{position:absolute;border:1.07px dashed #DDE3EA;
+      border-radius:0;z-index:1}
+ svg{position:absolute;left:0;top:0;z-index:1}
+</style></head><body><div id="cv">
+<div class="g" style="left:811.25px;top:519.53px;width:229.44px;height:278.61px;"></div>
+<div class="g" style="left:811.25px;top:29.50px;width:229.44px;height:478.56px;"></div>
+<div class="g" style="left:535.10px;top:29.50px;width:270.42px;height:478.56px;"></div>
+<div class="sg" style="left:244.19px;top:199.94px;width:213.06px;height:167.17px;"></div>
+<div class="g" style="left:174.54px;top:29.50px;width:352.36px;height:565.42px;"></div>
+<div class="b lt" style="left:29.50px;top:249.93px;width:122.92px;height:45.89px"><span>给定数据</span></div>
+<div class="b lt" style="left:29.50px;top:313.85px;width:122.92px;height:52.44px;flex-direction:column"><span>帖级截面样本</span><span>500 条 × 8 列</span></div>
+<div class="hd" style="left:350.72px;top:51.23px;line-height:30.29px;padding:0 8.19px;"><span>任务 1  数据理解</span></div>
+<div class="b" style="left:198.31px;top:114.72px;width:304.83px;height:70.47px"><span>识别变量类型与取值范围</span></div>
+<div class="b sm" style="left:254.03px;top:209.78px;width:91.78px;height:65.56px"><span>连续 2</span></div>
+<div class="b sm" style="left:355.64px;top:209.78px;width:91.78px;height:65.56px"><span>名义 2</span></div>
+<div class="b sm" style="left:254.03px;top:291.72px;width:91.78px;height:65.56px"><span>循环 3</span></div>
+<div class="b sm" style="left:355.64px;top:291.72px;width:91.78px;height:65.56px"><span>指示 1</span></div>
+<div class="b" style="left:198.31px;top:399.89px;width:304.83px;height:70.47px"><span>判定粒度与结构：一行 = 一条帖子</span></div>
+<div class="b lt" style="left:198.31px;top:494.94px;width:304.83px;height:70.47px"><span>输出变量字典与因果角色</span></div>
+<div class="hd" style="left:670.31px;top:51.23px;line-height:30.29px;padding:0 8.19px;"><span>任务 2  清洗与编码</span></div>
+<div class="b" style="left:560.50px;top:114.72px;width:219.61px;height:70.47px"><span>缺失检查：仅 1 条</span></div>
+<div class="b" style="left:560.50px;top:209.78px;width:219.61px;height:70.47px"><span>填补与编码</span></div>
+<div class="b sm" style="left:552.31px;top:304.83px;width:114.72px;height:70.47px"><span>X7 众数填补</span></div>
+<div class="b sm" style="left:673.58px;top:304.83px;width:114.72px;height:70.47px"><span>X2/X3 独热</span></div>
+<div class="b lt" style="left:560.50px;top:408.08px;width:219.61px;height:70.47px"><span>log1p：偏度 0.73</span></div>
+<div class="hd" style="left:925.97px;top:51.23px;line-height:30.29px;padding:0 8.19px;"><span>任务 3  回归与诊断</span></div>
+<div class="b" style="left:823.54px;top:114.72px;width:204.86px;height:119.64px;flex-direction:column"><span>OLS + HC3</span><span>稳健标准误</span></div>
+<div class="b sm" style="left:826.82px;top:304.83px;width:96.69px;height:70.47px"><span>VIF 共线</span></div>
+<div class="b sm" style="left:928.43px;top:304.83px;width:96.69px;height:70.47px"><span>BP / JB 残差</span></div>
+<div class="b lt" style="left:823.54px;top:408.08px;width:204.86px;height:70.47px"><span>10 折 CV：R² = 0.101</span></div>
+<div class="hd" style="left:925.97px;top:541.26px;line-height:30.29px;padding:0 8.19px;"><span>任务 4  效应与检验</span></div>
+<div class="b sm" style="left:826.82px;top:594.92px;width:96.69px;height:70.47px"><span>付费 +40.1%</span></div>
+<div class="b sm" style="left:928.43px;top:594.92px;width:96.69px;height:70.47px"><span>视频 ×4.90</span></div>
+<div class="b" style="left:823.54px;top:698.17px;width:204.86px;height:70.47px"><span>六种设定稳健性</span></div>
+<div class="b lt" style="left:1045.61px;top:374.49px;width:108.17px;height:78.67px;flex-direction:column"><span>结论与</span><span>行动建议</span></div>
+<svg width="1180" height="951" viewBox="0 0 1180 951"><defs><marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4.51" markerHeight="4.51" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5A6068"/></marker></defs><g stroke="#5A6068" stroke-width="1.07" stroke-linecap="square" fill="none"><path d="M 90.96 295.82 L 90.96 313.85" marker-end="url(#ar)"/><path d="M 152.42 340.07 L 174.54 340.07" marker-end="url(#ar)"/><path d="M 299.92 185.19 L 299.92 199.94" marker-end="url(#ar)"/><path d="M 401.53 185.19 L 401.53 199.94" marker-end="url(#ar)"/><path d="M 350.72 367.11 L 350.72 399.89" marker-end="url(#ar)"/><path d="M 350.72 470.36 L 350.72 494.94" marker-end="url(#ar)"/><path d="M 670.31 185.19 L 670.31 209.78" marker-end="url(#ar)"/><path d="M 609.67 280.25 L 609.67 304.83" marker-end="url(#ar)"/><path d="M 730.94 280.25 L 730.94 304.83" marker-end="url(#ar)"/><path d="M 609.67 375.31 L 609.67 391.69"/><path d="M 730.94 375.31 L 730.94 391.69"/><path d="M 609.67 391.69 L 730.94 391.69"/><path d="M 670.31 391.69 L 670.31 408.08" marker-end="url(#ar)"/><path d="M 875.17 234.36 L 875.17 304.83" marker-end="url(#ar)"/><path d="M 976.78 234.36 L 976.78 304.83" marker-end="url(#ar)"/><path d="M 875.17 375.31 L 875.17 391.69"/><path d="M 976.78 375.31 L 976.78 391.69"/><path d="M 875.17 391.69 L 976.78 391.69"/><path d="M 925.97 391.69 L 925.97 408.08" marker-end="url(#ar)"/><path d="M 875.17 665.39 L 875.17 681.78"/><path d="M 976.78 665.39 L 976.78 681.78"/><path d="M 875.17 681.78 L 976.78 681.78"/><path d="M 925.97 681.78 L 925.97 698.17" marker-end="url(#ar)"/><path d="M 526.90 340.07 L 535.10 340.07" marker-end="url(#ar)"/><path d="M 805.51 340.07 L 811.25 340.07" marker-end="url(#ar)"/><path d="M 1040.69 340.07 L 1057.08 340.07 L 1057.08 413.82 L 1045.61 413.82" marker-end="url(#ar)"/><path d="M 1040.69 630.15 L 1099.69 630.15 L 1099.69 453.15" marker-end="url(#ar)"/></g></svg>
+</div></body></html>

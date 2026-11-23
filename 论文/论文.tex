@@ -1,0 +1,72 @@
+﻿% ════════════════════════════════════════════
+% Facebook 化妆品品牌帖子曝光影响因素分析
+% 编译：xelatex 论文.tex（连续两遍）
+% ════════════════════════════════════════════
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[withoutpreface,bwprint]{format}
+
+\usepackage{float}
+\usepackage{needspace}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}\SetAlCapNameFnt{\small}
+\SetAlgorithmName{算法}{算法}{算法列表}
+\SetKwInOut{Input}{输入}
+\SetKwInOut{Output}{输出}
+\SetKwFunction{fitHC}{fitHC3}
+\SetKwFunction{kfold}{kfoldCV}
+\SetKwFunction{smear}{duanSmearing}
+\SetKwFunction{simCI}{simulateCI}
+\SetKwFunction{vif}{maxVIF}
+
+\newcounter{algocnt}
+\setlength{\LTleft}{\fill}
+\setlength{\LTright}{\fill}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+
+\begin{document}
+
+\renewcommand*{\mritekeywordslabelfont}{\song\bfseries}
+
+% ───────────── 封面 ─────────────
+\begin{titlepage}
+  \centering
+  \vspace*{2.4cm}
+
+  {\zihao{2}\bfseries 全国大学生大数据分析技术技能决赛\par}
+
+  \vspace{1.8cm}
+  {\zihao{2}\bfseries 科目二\par}
+
+  \vspace{3.0cm}
+  {\zihao{3}\bfseries 题目：社交帖子曝光的影响因素与投放效应测算\par}
+
+  \vspace{1.6cm}
+  {\zihao{3}\bfseries 组别：本科 Python 组\par}
+
+  \vfill
+\end{titlepage}
+
+% ───────────── 正文 ─────────────
+\setcounter{page}{1}
+\thispagestyle{plain}
+
+\input{0.摘要.tex}
+
+\setcounter{tocdepth}{2}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{-2pt}
+{\small\tableofcontents}
+\newpage
+
+\input{1.问题与数据.tex}
+\input{2.数据理解.tex}
+\input{3.数据清洗与整理.tex}
+\input{4.回归模型与预测能力.tex}
+\input{5.效应测算与稳健性.tex}
+\input{6.结论与建议.tex}
+\input{9.参考文献.tex}
+\input{10.附录.tex}
+
+\end{document}

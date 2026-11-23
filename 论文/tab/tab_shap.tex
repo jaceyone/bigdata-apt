@@ -1,0 +1,27 @@
+{\small
+\begin{longtable}{>{\centering\arraybackslash}p{0.240\textwidth}>{\centering\arraybackslash}p{0.120\textwidth}>{\centering\arraybackslash}p{0.200\textwidth}>{\centering\arraybackslash}p{0.220\textwidth}>{\centering\arraybackslash}p{0.200\textwidth}}
+  \caption{七个变量组的 Shapley $R^2$ 分解}
+  \label{tab:shap} \\
+  \toprule
+  变量组 & 自由度 & Shapley\_R² & 占已解释方差 & 占总方差 \\
+  \midrule
+  \endfirsthead
+  \caption{七个变量组的 Shapley $R^2$ 分解（续）} \\
+  \toprule
+  变量组 & 自由度 & Shapley\_R² & 占已解释方差 & 占总方差 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  发帖类型 X2 & 3 & 0.0767 & 0.3709 & 0.0767 \\
+  内容主题 X3 & 2 & 0.0142 & 0.0688 & 0.0142 \\
+  月份 X4 & 11 & 0.0579 & 0.2798 & 0.0579 \\
+  星期 X5 & 6 & 0.0236 & 0.1142 & 0.0236 \\
+  时段 X6 & 2 & 0.0055 & 0.0264 & 0.0055 \\
+  付费 X7 & 1 & 0.0244 & 0.1179 & 0.0244 \\
+  粉丝规模 logX1 & 1 & 0.0046 & 0.0220 & 0.0046 \\
+  发帖决策合计（X2/X3/X5/X6/X7） & 13 & 0.1445 & 0.6982 & 0.1445 \\
+  账号规模与时间合计（X1/X4） & 12 & 0.0624 & 0.3018 & 0.0624 \\
+  未解释方差 & — & 0.7931 & — & 0.7931 \\
+\end{longtable}
+}

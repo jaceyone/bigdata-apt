@@ -1,0 +1,25 @@
+{\small
+\begin{longtable}{>{\centering\arraybackslash}p{0.070\textwidth}>{\centering\arraybackslash}p{0.270\textwidth}>{\centering\arraybackslash}p{0.100\textwidth}>{\centering\arraybackslash}p{0.150\textwidth}>{\centering\arraybackslash}p{0.260\textwidth}>{\centering\arraybackslash}p{0.080\textwidth}}
+  \caption{变量字典、类型与建模角色}
+  \label{tab:dict} \\
+  \toprule
+  变量 & 含义 & 数据类型 & 因果角色 & 取值范围/类别 & 缺失数 \\
+  \midrule
+  \endfirsthead
+  \caption{变量字典、类型与建模角色（续）} \\
+  \toprule
+  变量 & 含义 & 数据类型 & 因果角色 & 取值范围/类别 & 缺失数 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  X1 & 粉丝规模（主页粉丝数） & 连续 & 状态/规模 & 81,370–139,441 & 0 \\
+  X2 & 帖子类型（载体形式） & 名义 & 发帖决策 & Photo/Status/Link/Video & 0 \\
+  X3 & 内容类别（内容主题） & 名义 & 发帖决策 & 1/2/3 & 0 \\
+  X4 & 发帖月份 & 有序/周期 & 发帖决策（时机） & 1–12 & 0 \\
+  X5 & 发帖星期 & 有序/周期 & 发帖决策（时机） & 1–7 & 0 \\
+  X6 & 发帖时段（小时） & 有序/周期 & 发帖决策（时机） & 0–23（样本 1–23） & 0 \\
+  X7 & 是否付费推广 & 二元 & 发帖决策 & 0/1 & 1 \\
+  Y1 & 曝光总次数（Lifetime Post Total Reach） & 连续（计数） & 结果 & 570–1,110,282 & 0 \\
+\end{longtable}
+}

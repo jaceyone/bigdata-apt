@@ -1,0 +1,23 @@
+{\small
+\begin{longtable}{>{\centering\arraybackslash}p{0.240\textwidth}>{\centering\arraybackslash}p{0.220\textwidth}>{\centering\arraybackslash}p{0.160\textwidth}>{\centering\arraybackslash}p{0.160\textwidth}>{\centering\arraybackslash}p{0.180\textwidth}}
+  \caption{共线诊断：方差膨胀因子与阈值判断}
+  \label{tab:vif} \\
+  \toprule
+  诊断项 & 对象 & 数值 & 参考阈值 & 判断 \\
+  \midrule
+  \endfirsthead
+  \caption{共线诊断：方差膨胀因子与阈值判断（续）} \\
+  \toprule
+  诊断项 & 对象 & 数值 & 参考阈值 & 判断 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  M1 最大 VIF（不含常数） & 全部解释变量 & 143.0 & >10 严重 & 严重共线 \\
+  M1 VIF & log(粉丝规模) & 124.9 & >10 严重 & 严重共线 \\
+  M1 VIF & 月份哑变量最大值 & 143.0 & >10 严重 & 与 logX1 互为镜像 \\
+  M1 标准化设计矩阵条件数 & 全部解释变量 & 48.5191 & >30 严重 & 数值不稳定 \\
+  M2 最大 VIF（不含常数） & 全部解释变量 & 3.232 & <5 可接受 & 共线已缓解 \\
+  M2 标准化设计矩阵条件数 & 全部解释变量 & 6.3556 & <30 可接受 & 通过 \\
+\end{longtable}
+}

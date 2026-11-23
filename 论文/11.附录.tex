@@ -1,0 +1,25 @@
+% ════════════════════════════════════════════
+% 附录（11.附录.tex）
+% ════════════════════════════════════════════
+\newpage
+\makeatletter
+\let\@oldaddcontentsline\addcontentsline
+\renewcommand{\addcontentsline}[3]{}
+
+\section*{\appendixname}
+\let\addcontentsline\@oldaddcontentsline
+\makeatother
+\phantomsection
+\addcontentsline{toc}{section}{\appendixname}
+
+\subsection*{数据诊断计算代码}
+\lstinputlisting[language=Python]{\detokenize{../求解/问题一/代码/主程序.py}}
+
+\subsection*{数据整理计算代码}
+\lstinputlisting[language=Python]{\detokenize{../求解/问题二/代码/主程序.py}}
+
+\subsection*{回归建模计算代码}
+\lstinputlisting[language=Python]{\detokenize{../求解/问题三/代码/主程序.py}}
+
+\subsection*{效应测算计算代码}
+\lstinputlisting[language=Python]{\detokenize{../求解/问题四/代码/主程序.py}}
